@@ -1,0 +1,881 @@
+@prefix : <https://glaciation-project.eu/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix glc: <https://glaciation-project.eu/reference_model#> .
+
+
+
+<https://glaciation-project.eu/ontology> rdf:type owl:Ontology .
+
+
+
+#################################################################
+
+#    Object Properties
+
+#################################################################
+
+
+
+###  https://glaciation-project.eu/reference_model#assigns
+
+glc:assigns rdf:type owl:ObjectProperty ;
+
+                                                        rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                        rdfs:domain glc:Scheduler ;
+
+                                                        rdfs:range glc:AssignedTask ;
+
+                                                        rdfs:comment "A relationship between a scheduler and an assigned task"^^xsd:string ;
+
+                                                        rdfs:label "assigns" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#composedBy
+
+glc:composedBy rdf:type owl:ObjectProperty ;
+
+                                                           rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                           rdfs:domain glc:SoftConstraintComposition ;
+
+                                                           rdfs:range glc:SoftConstraint ;
+
+                                                           rdfs:comment "For keeping information about the soft constraints that are included in a composition"^^xsd:string ;
+
+                                                           rdfs:label "composedBy" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#consumes
+
+glc:consumes rdf:type owl:ObjectProperty ;
+
+                                                         rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                         rdfs:domain glc:AssignedTask ;
+
+                                                         rdfs:range glc:Resource ;
+
+                                                         rdfs:comment "Relationships for recording the resource(s) of each assigned task"^^xsd:string ;
+
+                                                         rdfs:label "consumes" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasAspect
+
+glc:hasAspect rdf:type owl:ObjectProperty ;
+
+                                                          rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                          rdfs:domain glc:Constraint ;
+
+                                                          rdfs:range glc:Aspect ;
+
+                                                          rdfs:comment "For keeping information about the aspect of each constraing, e.g., time, power consumption"^^xsd:string ;
+
+                                                          rdfs:label "hasAspect" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasComposition
+
+glc:hasComposition rdf:type owl:ObjectProperty ;
+
+                                                               rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                               rdfs:domain glc:Task ;
+
+                                                               rdfs:range glc:SoftConstraintComposition ;
+
+                                                               rdfs:comment "For keeping information about composition of the soft constraints of a task"^^xsd:string ;
+
+                                                               rdfs:label "hasComposition" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasConstraint
+
+glc:hasConstraint rdf:type owl:ObjectProperty ;
+
+                                                              rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                              rdfs:domain glc:Task ;
+
+                                                              rdfs:range glc:Constraint ;
+
+                                                              rdfs:comment "A relationship for recording all the constraints of a task"^^xsd:string ;
+
+                                                              rdfs:label "hasConstraint" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasMeasurement
+
+glc:hasMeasurement rdf:type owl:ObjectProperty ;
+
+                                                               rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                               rdfs:domain glc:AssignedTask ,
+
+                                                                           glc:Resource ;
+
+                                                               rdfs:range glc:Measurement ;
+
+                                                               rdfs:comment "A relationship between a feature of interest, e.g., a resource/or and assigned task, and a measurement"^^xsd:string ;
+
+                                                               rdfs:label "hasMeasurement" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasPredictedMeasurement
+
+glc:hasPredictedMeasurement rdf:type owl:ObjectProperty ;
+
+                                                                        rdfs:subPropertyOf glc:hasMeasurement ;
+
+                                                                        rdfs:domain glc:AssignedTask ;
+
+                                                                        rdfs:range glc:Measurement ;
+
+                                                                        rdfs:comment "A relationship for recording the predicted measurements of an assigned task"^^xsd:string ;
+
+                                                                        rdfs:label "hasPredictedMeasurement" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasRealizedMeasurement
+
+glc:hasRealizedMeasurement rdf:type owl:ObjectProperty ;
+
+                                                                       rdfs:subPropertyOf glc:hasMeasurement ;
+
+                                                                       rdfs:domain glc:AssignedTask ;
+
+                                                                       rdfs:range glc:Measurement ;
+
+                                                                       rdfs:comment "A relationship for recording the actual measurements of an assigned task"^^xsd:string ;
+
+                                                                       rdfs:label "hasRealizedMeasurement" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasStatus
+
+glc:hasStatus rdf:type owl:ObjectProperty ;
+
+                                                          rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                          rdfs:domain glc:Class ;
+
+                                                          rdfs:range glc:Status ;
+
+                                                          rdfs:comment "A relationship between a task and its status"^^xsd:string ;
+
+                                                          rdfs:label "hasStatus" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasSubResource
+
+glc:hasSubResource rdf:type owl:ObjectProperty ;
+
+                                                               rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                               rdfs:domain glc:Resource ;
+
+                                                               rdfs:range glc:Resource ;
+
+                                                               rdfs:comment "Relationships for recording the sub-resource(s) of each resource (e.g, the hardware of a node)"^^xsd:string ;
+
+                                                               rdfs:label "hasSubResource" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#makesMeasurement
+
+glc:makesMeasurement rdf:type owl:ObjectProperty ;
+
+                                                                 rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                                 rdfs:domain glc:MeasuringResource ;
+
+                                                                 rdfs:range glc:Measurement ;
+
+                                                                 rdfs:comment "A relationship between a measuring resource and a measurement"^^xsd:string ;
+
+                                                                 rdfs:label "makesMeasurement" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#manages
+
+glc:manages rdf:type owl:ObjectProperty ;
+
+                                                        rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                        rdfs:domain glc:Scheduler ;
+
+                                                        rdfs:range glc:Resource ;
+
+                                                        rdfs:comment "A relationship between a scheduler and a Resource"^^xsd:string ;
+
+                                                        rdfs:label "manages" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#measuredIn
+
+glc:measuredIn rdf:type owl:ObjectProperty ;
+
+                                                           rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                           rdfs:domain glc:Measurement ;
+
+                                                           rdfs:range glc:MeasurementUnit ;
+
+                                                           rdfs:label "measuredIn" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#monitors
+
+glc:monitors rdf:type owl:ObjectProperty ;
+
+                                                         rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                         rdfs:domain glc:Monitor ;
+
+                                                         rdfs:range glc:AssignedTask ;
+
+                                                         rdfs:comment "For recording which monitor corresponds to an assigned task"^^xsd:string ;
+
+                                                         rdfs:label "monitors" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#produces
+
+glc:produces rdf:type owl:ObjectProperty ;
+
+                                                         rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                         rdfs:domain glc:AssignedTask ;
+
+                                                         rdfs:range glc:Resource ;
+
+                                                         rdfs:comment "For keeping information about the production, e.g., the output, of a working task."^^xsd:string ;
+
+                                                         rdfs:label "produces" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#relatesToConstraint
+
+glc:relatesToConstraint rdf:type owl:ObjectProperty ;
+
+                                                                    rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                                    rdfs:domain glc:Measurement ;
+
+                                                                    rdfs:range glc:Constraint ;
+
+                                                                    rdfs:comment "For keeping information about the constraint that each measurement relates to"^^xsd:string ;
+
+                                                                    rdfs:label "relatesToConstraint" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#relatesToMeasurementProperty
+
+glc:relatesToMeasurementProperty rdf:type owl:ObjectProperty ;
+
+                                                                             rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                                             rdfs:domain glc:Measurement ;
+
+                                                                             rdfs:range glc:MeasurementProperty ;
+
+                                                                             rdfs:label "relatesToMeasurementProperty" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#reschedules
+
+glc:reschedules rdf:type owl:ObjectProperty ;
+
+                                                            rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                            rdfs:domain glc:Scheduler ;
+
+                                                            rdfs:range glc:AssignedTask ;
+
+                                                            rdfs:comment "A relationship between a scheduler and an assigned task that concern rescheduling"^^xsd:string ;
+
+                                                            rdfs:label "reschedules" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#scheduledBy
+
+glc:scheduledBy rdf:type owl:ObjectProperty ;
+
+                                                            rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                            rdfs:domain glc:SubmittedTask ;
+
+                                                            rdfs:range glc:Scheduler ;
+
+                                                            rdfs:comment "A relationship between a submitted task and a scheduler"^^xsd:string ;
+
+                                                            rdfs:label "scheduledBy" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#triggersReschedule
+
+glc:triggersReschedule rdf:type owl:ObjectProperty ;
+
+                                                                   rdfs:subPropertyOf owl:topObjectProperty ;
+
+                                                                   rdfs:domain glc:Monitor ;
+
+                                                                   rdfs:range glc:Scheduler ;
+
+                                                                   rdfs:comment "A triggered event relationship about rescheduling"^^xsd:string ;
+
+                                                                   rdfs:label "triggersReschedule" .
+
+
+
+
+
+#################################################################
+
+#    Data properties
+
+#################################################################
+
+
+
+###  https://glaciation-project.eu/reference_model#endTime
+
+glc:endTime rdf:type owl:DatatypeProperty ;
+
+                                                        rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                        rdfs:domain glc:Status ;
+
+                                                        rdfs:range xsd:dateTimeStamp ;
+
+                                                        rdfs:comment "The end time of a status of a task"^^xsd:string ;
+
+                                                        rdfs:label "endTime" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#endingInterval
+
+glc:endingInterval rdf:type owl:DatatypeProperty ;
+
+                                                               rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                               rdfs:domain glc:AggregatedMeasurement ;
+
+                                                               rdfs:range xsd:dateTimeStamp ;
+
+                                                               rdfs:comment "The ending interval time of an aggregated measurement"^^xsd:string ;
+
+                                                               rdfs:label "endingInterval" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasAggregatedFuntion
+
+glc:hasAggregatedFuntion rdf:type owl:DatatypeProperty ;
+
+                                                                     rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                                     rdfs:domain glc:AggregatedMeasurement ;
+
+                                                                     rdfs:range xsd:string ;
+
+                                                                     rdfs:comment "The aggregatedFunction of an aggregated measurement"^^xsd:string ;
+
+                                                                     rdfs:label "hasAggregatedFuntion" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasDescription
+
+glc:hasDescription rdf:type owl:DatatypeProperty ;
+
+                                                               rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                               rdfs:domain glc:Class ;
+
+                                                               rdfs:range xsd:string ;
+
+                                                               rdfs:comment "The description of any entity"^^xsd:string ;
+
+                                                               rdfs:label "hasDescription" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasID
+
+glc:hasID rdf:type owl:DatatypeProperty ;
+
+                                                      rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                      rdfs:domain glc:Class ;
+
+                                                      rdfs:range xsd:string ;
+
+                                                      rdfs:comment "The ID of any entity"^^xsd:string ;
+
+                                                      rdfs:label "hasID" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasTimestamp
+
+glc:hasTimestamp rdf:type owl:DatatypeProperty ;
+
+                                                             rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                             rdfs:domain glc:Measurement ;
+
+                                                             rdfs:range xsd:dateTimeStamp ;
+
+                                                             rdfs:label "hasTimestamp" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#hasValue
+
+glc:hasValue rdf:type owl:DatatypeProperty ;
+
+                                                         rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                         rdfs:domain glc:Measurement ;
+
+                                                         rdfs:range xsd:string ;
+
+                                                         rdfs:label "hasValue" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#startTime
+
+glc:startTime rdf:type owl:DatatypeProperty ;
+
+                                                          rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                          rdfs:domain glc:Status ;
+
+                                                          rdfs:range xsd:dateTimeStamp ;
+
+                                                          rdfs:comment "The start time of a status of a task"^^xsd:string ;
+
+                                                          rdfs:label "startTime" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#startingInterval
+
+glc:startingInterval rdf:type owl:DatatypeProperty ;
+
+                                                                 rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                                 rdfs:domain glc:AggregatedMeasurement ;
+
+                                                                 rdfs:range xsd:dateTimeStamp ;
+
+                                                                 rdfs:comment "The starting interval time of an aggregated measurement"^^xsd:string ;
+
+                                                                 rdfs:label "startingInterval" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#statusCode
+
+glc:statusCode rdf:type owl:DatatypeProperty ;
+
+                                                           rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                           rdfs:domain glc:Status ;
+
+                                                           rdfs:range xsd:integer ;
+
+                                                           rdfs:comment "The status code of a status of a task"^^xsd:string ;
+
+                                                           rdfs:label "statusCode" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#timeStepResolution
+
+glc:timeStepResolution rdf:type owl:DatatypeProperty ;
+
+                                                                   rdfs:subPropertyOf owl:topDataProperty ;
+
+                                                                   rdfs:domain glc:AggregatedMeasurement ;
+
+                                                                   rdfs:range xsd:string ;
+
+                                                                   rdfs:comment "The time step resolution of an aggregated measurement"^^xsd:string ;
+
+                                                                   rdfs:label "timeStepResolution" .
+
+
+
+
+
+#################################################################
+
+#    Classes
+
+#################################################################
+
+
+
+### https://glaciation-project.eu/reference_model#MeasurementUnit
+
+glc:MeasurementUnit rdf:type owl:Class ;
+
+                                                         rdfs:subClassOf glc:Class ;
+
+                                                         rdfs:label "MeasurementUnit" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#MeasurementProperty
+
+glc:MeasurementProperty rdf:type owl:Class ;
+
+                                                        rdfs:subClassOf glc:Class ;
+
+                                                        rdfs:label "MeasurementProperty" .
+
+
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#AggregatedMeasurement
+
+glc:AggregatedMeasurement rdf:type owl:Class ;
+
+                                                                      rdfs:subClassOf glc:Measurement ;
+
+                                                                      rdfs:comment "Represents any aggregated measurement, by using an aggregated function, a time interval and time step resolution"^^xsd:string ;
+
+                                                                      rdfs:label "AggregatedMeasurement" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#Aspect
+
+glc:Aspect rdf:type owl:Class ;
+
+                                                       rdfs:subClassOf glc:Class ;
+
+                                                       rdfs:comment "It describes the aspect of a contstraint, e.g., time, power consumption"^^xsd:string ;
+
+                                                       rdfs:label "Aspect" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#AssignedTask
+
+glc:AssignedTask rdf:type owl:Class ;
+
+                                                             rdfs:subClassOf glc:Task ;
+
+                                                             rdfs:comment "An assigned task that will be pefrormed by using some resources (and based on some constraints)"^^xsd:string ;
+
+                                                             rdfs:label "AssignedTask" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#Class
+
+glc:Class rdf:type owl:Class ;
+
+                                                      rdfs:comment "A generic Class for the glaciation project"^^xsd:string ;
+
+                                                      rdfs:label "Class" .
+
+
+
+###  https://glaciation-project.eu/reference_model#Constraint
+
+glc:Constraint rdf:type owl:Class ;
+
+                                                           rdfs:subClassOf glc:Class ;
+
+                                                           rdfs:comment "For representing the constraints of a task"^^xsd:string ;
+
+                                                           rdfs:label "Constraint" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#HardConstraint
+
+glc:HardConstraint rdf:type owl:Class ;
+
+                                                               rdfs:subClassOf glc:Constraint ;
+
+                                                               rdfs:comment "For representing the hard constraints of a task"^^xsd:string ;
+
+                                                               rdfs:label "HardConstraint" .
+
+
+
+###  https://glaciation-project.eu/reference_model#Measurement
+
+glc:Measurement rdf:type owl:Class ;
+
+                                                            rdfs:subClassOf glc:Class ;
+
+                                                            rdfs:comment "Represents any measurement, e.g., for energy"^^xsd:string ;
+
+                                                            rdfs:label "Measurement" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#MeasuringResource
+
+glc:MeasuringResource rdf:type owl:Class ;
+
+                                                                  rdfs:subClassOf glc:Class ,
+
+                                                                                  glc:WorkProducingResource ;
+
+                                                                  rdfs:comment "It represents any work producing  resource performing measurements"^^xsd:string ;
+
+                                                                  rdfs:label "MeasuringResource" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#Monitor
+
+glc:Monitor rdf:type owl:Class ;
+
+                                                        rdfs:subClassOf glc:Class ;
+
+                                                        rdfs:comment "Represents an entity that monitors an assigned task"^^xsd:string ;
+
+                                                        rdfs:label "Monitor" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#NonWorkProducingResource
+
+glc:NonWorkProducingResource rdf:type owl:Class ;
+
+                                                                         rdfs:subClassOf glc:Resource ;
+
+                                                                         rdfs:comment "It represents any non work producing resource (e.g., dataset)"^^xsd:string ;
+
+                                                                         rdfs:label "NonWorkProducingResource" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#Resource
+
+glc:Resource rdf:type owl:Class ;
+
+                                                         rdfs:subClassOf glc:Class ;
+
+                                                         rdfs:comment "It represents any resource"^^xsd:string ;
+
+                                                         rdfs:label "Resource" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#Scheduler
+
+glc:Scheduler rdf:type owl:Class ;
+
+                                                          rdfs:subClassOf glc:Class ;
+
+                                                          rdfs:comment "Responsible for scheduling a submitted task and for managing the resources"^^xsd:string ;
+
+                                                          rdfs:label "Scheduler" .
+
+###  https://glaciation-project.eu/reference_model#SoftConstraint
+
+glc:SoftConstraint rdf:type owl:Class ;
+
+                                                               rdfs:subClassOf glc:Constraint ;
+
+                                                               rdfs:comment "For representing the soft constraints of a task"^^xsd:string ;
+
+                                                               rdfs:label "SoftConstraint" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#SoftConstraintComposition
+
+glc:SoftConstraintComposition rdf:type owl:Class ;
+
+                                                                          rdfs:subClassOf glc:Class ;
+
+                                                                          rdfs:comment "It describes the composition of soft constraints, e.g., the order of soft constraings according to a given preference"^^xsd:string ;
+
+                                                                          rdfs:label "SoftConstraintComposition" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#Status
+
+glc:Status rdf:type owl:Class ;
+
+                                                       rdfs:subClassOf glc:Class ;
+
+                                                       rdfs:comment """Represents information about a specific status of a task for a given time
+
+interval"""^^xsd:string ;
+
+                                                       rdfs:label "Status" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#SubmittedTask
+
+glc:SubmittedTask rdf:type owl:Class ;
+
+                                                              rdfs:subClassOf glc:Task ;
+
+                                                              rdfs:comment "A submitted task that will be processed by a Scheduler"^^xsd:string ;
+
+                                                              rdfs:label "SubmittedTask" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#Task
+
+glc:Task rdf:type owl:Class ;
+
+                                                     rdfs:subClassOf glc:Class ;
+
+                                                     rdfs:comment "It describes any task that has constrains and given statuses"^^xsd:string ;
+
+                                                     rdfs:label "Task" .
+
+
+
+
+
+###  https://glaciation-project.eu/reference_model#WorkProducingResource
+
+glc:WorkProducingResource rdf:type owl:Class ;
+
+                                                                      rdfs:subClassOf glc:Resource ;
+
+                                                                      rdfs:comment "It represents any work producing  resource, a node, a CPU, etc."^^xsd:string ;
+
+                                                                      rdfs:label "WorkProducingResource" .
+
+
+
+
+
+###  Generated by the OWL API (version 4.5.13) https://github.com/owlcs/owlapi
